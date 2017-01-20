@@ -1,0 +1,184 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<link  href="mdui/css/mdui.min.css" rel="stylesheet" type="text/css"/>
+<script src='mdui/js/mdui.min.js' rel="stylesheet" ></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  
+  <title>管理中心</title>
+</head>
+<style> 
+body{ font-family:"Microsoft Yahei"; } 
+       
+</style>
+
+<header class="mdui-appbar mdui-appbar-fixed">
+  <div class="mdui-toolbar mdui-color-theme">
+    <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-drawer="{target: '#main-drawer'}"><i class="mdui-icon material-icons">&#xe5d2;</i></span>
+    <a class="mdui-typo-headline mdui-hidden-xs">Cloreal</a>
+    <div class="mdui-toolbar-spacer"></div>
+Welcome back,
+	<button class="mdui-btn mdui-icon material-icons" mdui-menu="{target: '#example-1'}" >{$res["userinfo"]["username"]} <i class="mdui-icon material-icons">&#xe5d4;</i></button>
+        <ul class="mdui-menu" id="example-1">
+          <li class="mdui-menu-item" disabled>
+            <a href="javascript:;">余额:{$res["userinfo"]["usermoney"]}</a>
+          </li>
+		<li class="mdui-menu-item">
+            <a href="javascript:;" class="mdui-ripple">Refresh</a>
+          </li>
+          <li class="mdui-menu-item">
+            <a href="javascript:;" class="mdui-ripple">个人设置</a>
+          </li>
+          <li class="mdui-divider"></li>
+          <li class="mdui-menu-item">
+            <a href="javascript:;" class="mdui-ripple">Sign out</a>
+          </li>
+        </ul>
+</header>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-pink ">
+
+<div class="mdui-drawer" id="main-drawer">
+
+
+<div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+        <a href="{:U('User/index')}" class="mdui-list-item-content ">后台主页</a>
+      </div> 
+	  <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe2bd;</i>
+        <a href="{:U('Product/index')}" class="mdui-list-item-content ">产品管理</a>
+      </div>
+	  <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe86d;</i>
+        <a href="{:U('Cronlist/index')}" class="mdui-list-item-content ">操作记录</a>
+      </div>
+	  <notempty name="checkWebUser">
+	  <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe0c9;</i>
+        <a class="mdui-list-item-content ">新闻动态</a>
+      </div>
+	  </notempty>
+	  <notempty name="checkAgent">
+	  <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe0c9;</i>
+        <a class="mdui-list-item-content ">后台公告</a>
+      </div>
+	  </notempty>
+	<notempty name="checkAgent">
+	<div class="mdui-collapse-item ">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe7fb;</i>
+        <div class="mdui-list-item-content">代理商管理</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list">
+        <a  class="mdui-list-item mdui-ripple" href="{:U('pricesetting/index')}">价格产品设置</a>
+        <a  class="mdui-list-item mdui-ripple" href="{:U('Install/update')}">批量同步产品</a>
+        <a  class="mdui-list-item mdui-ripple" href="{:U('pricesetting/pricetype')}">代理级别设置</a>
+        <a  class="mdui-list-item mdui-ripple" href="{:U('UserList/index')}">下级会员列表</a>
+        <a  class="mdui-list-item mdui-ripple" href="{:U('dictionary/index')}">字典管理</a>
+      </div>
+    </div>
+	</notempty>
+	<div class="mdui-collapse-item ">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe14f;</i>&#xe600;
+        <div class="mdui-list-item-content">订单管理</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list">
+        <a href="{:U('Product/order')}" class="mdui-list-item mdui-ripple">查找订单</a>
+        <a href="{:U('Product/order',['state'=>1])}" class="mdui-list-item mdui-ripple">未完成订单</a>
+        <a href="{:U('Product/refun')}" class="mdui-list-item mdui-rupple ">退款状态</a>
+      </div>
+    </div>
+    <div class="mdui-collapse-item ">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe85e;</i>
+        <div class="mdui-list-item-content">个人信息</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list">
+        <a href="#" class="mdui-list-item mdui-ripple">登录记录</a>
+        <a href="{:U('DomainUser/index')}" class="mdui-list-item mdui-rupple ">域名注册模板</a>
+      </div>
+    </div>
+
+    <div class="mdui-collapse-item ">
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe870;</i>
+        <div class="mdui-list-item-content">财务管理</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe313;</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list">
+        <a href="#" class="mdui-list-item mdui-ripple ">财务信息</a>
+        <a href="#" class="mdui-list-item mdui-ripple ">充值记录</a>
+        <a href="#" class="mdui-list-item mdui-ripple ">账户充值</a>
+      </div>
+    </div>
+	  <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons ">&#xe879;</i>
+        <a  href="{:U('User/logout')}" class="mdui-list-item-content ">用户登出</a>
+      </div>
+
+
+</div>
+</div>
+
+    <div class="mdui-typo-title mdui-col-offset-md-1"><h1>Virtual Private Server </h1></div>
+	<br><br>
+<div class="mdui-divider"></div>
+  <div class="  mdui-col-sm-3"><button class="mdui-btn mdui-ripple mdui-btn-block">Virtual Private Server</button></div>
+  <div class="  mdui-col-sm-3"><button class="mdui-btn mdui-ripple mdui-btn-block">Cloud Virtual Machine</button></div>
+  <div class="  mdui-col-sm-3"><button class="mdui-btn mdui-ripple mdui-btn-block">Dedicated Server</button></div>
+  <div class="  mdui-col-sm-3"><button class="mdui-btn mdui-ripple mdui-btn-block">Cloud Database</button></div>
+  <br><br><br><br><br>
+<ul class="mdui-list">
+  <li class="mdui-list-item mdui-ripple">
+<a class="mdui-col-md-2  mdui-col-offset-md-1">Server</a>
+<a class="mdui-col-md-2">IP</a>
+<a class="mdui-col-md-3">Created On</a>
+<a class="mdui-col-md-3">Expires On</a>
+<a class="mdui-col-md-2">Current Status</a>
+
+  </li>
+  <li class="mdui-divider-inset mdui-m-y-0"></li>
+  <li class="mdui-list-item mdui-ripple ">
+<a class="mdui-col-md-2 mdui-col-offset-md-1">Tencent Cloud</a>
+<a class="mdui-col-md-2">***,***,***,***</a>
+<a class="mdui-col-md-3">Nov 11, 2016</a>
+<a class="mdui-col-md-3">Feb 11, 2017</a>
+<a class="mdui-col-md-1">Active</a>
+<a href="javascript:;" class="mdui-btn mdui-btn-iconmdui-col-md-1"><i class="mdui-icon material-icons">&#xe5d4;</i></a></a>
+  </li>
+  <li class="mdui-divider-inset mdui-m-y-0"></li>
+  <li class="mdui-list-item mdui-ripple ">
+<a class="mdui-col-md-2 mdui-col-offset-md-1">Tencent Cloud</a>
+<a class="mdui-col-md-2">***,***,***,***</a>
+<a class="mdui-col-md-3">Dec 26, 2016</a>
+<a class="mdui-col-md-3">Dec 26, 2017</a>
+<a class="mdui-col-md-1">Active</a>
+<a href="javascript:;" class="mdui-btn mdui-btn-iconmdui-col-md-1"><i class="mdui-icon material-icons">&#xe5d4;</i></a></a>
+  </li>
+  <li class="mdui-divider-inset mdui-m-y-0"></li>
+  <li class="mdui-list-item mdui-ripple">
+<a class="mdui-col-md-2  mdui-col-offset-md-1">HK Cloud</a>
+<a class="mdui-col-md-2">***,***,***,***</a>
+<a class="mdui-col-md-3">May 09, 2015</a>
+<a class="mdui-col-md-3">May 09, 2017</a>
+<a class="mdui-col-md-1">Active</a>
+<a href="javascript:;" class="mdui-btn mdui-btn-iconmdui-col-md-1"><i class="mdui-icon material-icons">&#xe5d4;</i></a></a>
+  </li>
+</ul>
+
+	
+
+	
+	
+
